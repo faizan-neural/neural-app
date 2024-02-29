@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: caprover-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: caprover
+  template:
+    metadata:
+      labels:
+        app: caprover
+    spec:
+      containers:
+      - name: caprover
+        image: 656658490528.dkr.ecr.us-west-1.amazonaws.com/caprover-sandbox:latest
+        ports:
+        - containerPort: 80
+        - containerPort: 443
+        - containerPort: 3000
+        env:
+        - name: ACCEPTED_TERMS
+          value: "true"
+        - name: BY_PASS_PROXY_CHECK
+          value: "TRUE"
+        volumeMounts:
+        - name: docker-sock
+          mountPath: /var/run/docker.sock
+        - name: captain
+          mountPath: /captain
+        securityContext:
+          privileged: true # Allows the container to access the host's Docker socket
+      volumes:
+      - name: docker-sock
+        hostPath:
+          path: /var/run/docker.sock
+          # Removing the type: Socket to avoid the strict check
+      - name: captain
+        hostPath:
+          path: /captain
+          type: DirectoryOrCreate

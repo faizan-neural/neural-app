@@ -1,0 +1,1 @@
+{"version":3,"file":"BaseApi.js","sourceRoot":"","sources":["../../src/api/BaseApi.ts"],"names":[],"mappings":";;AAAA,MAAM,OAAO;IAGT,YAAmB,MAAc,EAAS,WAAmB;QAA1C,WAAM,GAAN,MAAM,CAAQ;QAAS,gBAAW,GAAX,WAAW,CAAQ;QACzD,IAAI,CAAC,IAAI,GAAG,EAAE,CAAA;IAClB,CAAC;CACJ;AAED,kBAAe,OAAO,CAAA"}
